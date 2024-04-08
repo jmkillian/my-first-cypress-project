@@ -19,9 +19,9 @@ describe('Add Contact Tests', () => {  // arrow function is shorthand to get one
     cy.get('#postalCode').type('44566')
     cy.get('#country').type('USA')
     cy.get('#submit').click()
-    cy.contains('Test' + random + ' User').click()
+    cy.contains('Test' + random + ' User2').click()
     // Use template literal - Use backtick to use a variable
-    cy.get('#firstName').should('contain', `Test$(random)`)
+    cy.get('#firstName').should('contain', `Test${random}`)
     cy.get('#lastName').should('contain', 'User2')
     cy.get('#birthdate').should('contain', '1995-05-02')
     cy.get('#email').should('contain', 'test2.user2@bar.com')
