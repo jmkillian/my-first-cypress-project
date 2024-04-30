@@ -47,8 +47,8 @@ Cypress.Commands.add('addContact', (random) => {
 })
 
 Cypress.Commands.add('deleteContact', (random) => {
-    cy.contains('Test' + random + ' User2').click()
+//    cy.contains('Test' + random + ' User2').click()
     cy.get('#delete').click()
     cy.on('window:confirm', () => true)
-    cy.get('.contactTableBodyRow').contains('Test' + random + 'User2').should('not.exist')
+//    cy.get('.contactTableBodyRow').contains('Test' + random + 'User2').should('not.exist')
 })

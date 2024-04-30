@@ -3,7 +3,7 @@ describe('Add Contact Tests', () => {  // arrow function is shorthand to get one
   // Create a random number
   let random = Math.floor(Math.random() * 1000)
     cy.login()
-    gi
+    cy.addContact(random)
     cy.contains('Test' + random + ' User2').click()
     // Use template literal - Use backtick to use a variable
     cy.get('#firstName').should('contain', `Test${random}`)
@@ -17,9 +17,9 @@ describe('Add Contact Tests', () => {  // arrow function is shorthand to get one
     cy.get('#stateProvince').should('contain', 'CA')
     cy.get('#postalCode').should('contain', '44566')
     cy.get('#country').should('contain', 'USA')
-//    cy.get('#delete').click()
-//    cy.on('window:confirm', () => true)
-//    cy.get('.contactTableBodyRow').contains('Test' + random + 'User2').should('not.exist')
-//    cy.get('#logout').click()
+    cy.deleteContact(random)
+
+    cy.get('.contactTableBodyRow').contains('Test' + random + 'User2').should('not.exist')
+    cy.get('#logout').click()
   })
 })
