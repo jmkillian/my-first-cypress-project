@@ -34,8 +34,8 @@ describe('Update Contact Tests', () => {  // arrow function is shorthand to get 
     cy.get('#postalCode').should('contain', '99566')
     cy.get('#country').should('contain', 'USA')
 
-//    cy.deleteContact()
-//    cy.get('.contactTableBodyRow').contains('Test' + random + 'User2').should('not.exist')
+    cy.deleteContact()
+    cy.get('.contactTableBodyRow').contains('Update' + random + ' Person').should('not.exist')
     cy.get('#logout').click()
   })
 })
