@@ -1,5 +1,5 @@
 describe('Add Contact Tests', () => {  // arrow function is shorthand to get one function to call another
-  it('Can add a new contact', () => {
+ it('Can add a new contact', () => {
   // Create a random number
   let random = Math.floor(Math.random() * 1000)
     cy.login()
@@ -22,4 +22,15 @@ describe('Add Contact Tests', () => {  // arrow function is shorthand to get one
     cy.get('.contactTableBodyRow').contains('Test' + random + 'User2').should('not.exist')
     cy.get('#logout').click()
   })
+
+  it('Returns an error when required field is missing', () => {
+    cy.login()
+    cy.get('#add-contact').click()
+    cy.get('#firstName').type('Petunia')
+    // leave all other fields blank
+    cy.get('#submit').click()
+    cy.get('#error').should('contain', 'Contact validation failed: lastName')
+    cy.get('#cancel').click()
+    cy.get('#logout').click()
+    })
 })
