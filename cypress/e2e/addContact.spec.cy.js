@@ -1,4 +1,7 @@
 describe('Add Contact Tests', () => {  // arrow function is shorthand to get one function to call another
+    before(() => {
+        cy.log('This is running in my before hook.')
+    })
  it('Can add a new contact', () => {
   // Create a random number
   let random = Math.floor(Math.random() * 1000)
@@ -32,5 +35,9 @@ describe('Add Contact Tests', () => {  // arrow function is shorthand to get one
     cy.get('#error').should('contain', 'Contact validation failed: lastName')
     cy.get('#cancel').click()
     cy.get('#logout').click()
+    })
+
+    after(() => {
+      cy.log('This is running in my after hook.')
     })
 })

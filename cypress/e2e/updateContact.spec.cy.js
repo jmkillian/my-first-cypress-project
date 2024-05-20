@@ -1,8 +1,11 @@
 describe('Update Contact Tests', () => {  // arrow function is shorthand to get one function to call another
+
+    beforeEach(() => {
+        cy.login()
+    })
   it('Can update a contact', () => {
   // Create a random number
   let random = Math.floor(Math.random() * 1000)
-    cy.login()
     cy.addContact(random)
     cy.contains('Test' + random + ' User2').click()
     cy.get('#edit-contact').click()
@@ -33,15 +36,13 @@ describe('Update Contact Tests', () => {  // arrow function is shorthand to get 
     cy.get('#stateProvince').should('contain', 'CO')
     cy.get('#postalCode').should('contain', '99566')
     cy.get('#country').should('contain', 'USA')
-
-    cy.deleteContact()
-    cy.get('.contactTableBodyRow').contains('Update' + random + ' Person').should('not.exist')
-    cy.get('#logout').click()
+//    cy.deleteContact()
+//    cy.get('.contactTableBodyRow').contains('Update' + random + ' Person').should('not.exist')
+//    cy.get('#logout').click()
   })
 
   it('Returns error when birthdate validation fails.', () => {
     let random = Math.floor(Math.random() * 1000)
-    cy.login()
     cy.addContact(random)
     cy.contains('Test' + random + ' User2').click()
     cy.get('#edit-contact').click()
@@ -50,8 +51,12 @@ describe('Update Contact Tests', () => {  // arrow function is shorthand to get 
     cy.get('#submit').click()
     cy.get('#error').should('contain', 'Validation failed: birthdate')
     cy.get('#cancel').click()
-    cy.deleteContact(random)
-    cy.get('.contactTableBodyRow').contains('Update' + random + ' Person').should('not.exist')
-    cy.get('#logout').click()
+//    cy.deleteContact(random)
+//    cy.get('.contactTableBodyRow').contains('Update' + random + ' Person').should('not.exist')
+//    cy.get('#logout').click()
+  })
+
+  afterEach(() => {
+    cy.deleteContact()
   })
 })
