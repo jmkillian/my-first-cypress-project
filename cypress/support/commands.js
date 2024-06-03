@@ -26,8 +26,8 @@
 
 Cypress.Commands.add('login', () => {
     cy.visit('https://thinking-tester-contact-list.herokuapp.com')
-    cy.get('#email').type('Gingerz346@gmail.com')
-    cy.get('#password').type('YRbr3RJy@5YrNw')
+    cy.get('#email').type(Cypress.env('username')) // call variable
+    cy.get('#password').type(Cypress.env('password'))
     cy.get('#submit').click()
 })
 Cypress.Commands.add('addContact', (random) => {
